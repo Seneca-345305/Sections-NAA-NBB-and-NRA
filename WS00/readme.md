@@ -1,6 +1,8 @@
 # Workshop #0 (ZERO): Computer and GitHub Account Preparation for Coding and Collaboration
 
 ---
+V1.1 corrected the submission command
+---
 
 In this initial workshop, you will install and configure the software needed to help you code, debug, and collaborate using the C++ language.  
   
@@ -517,20 +519,13 @@ Commit and push the file to GitHub. Then, pull it to Matrix and submit it follow
 > For full mark, on-time submission must be done from you lab computer at Seneca
 
 ```bash
-~profname.proflastname/submit 2??/wX/lab_sss <ENTER>
+~profname.proflastname/submit 345/w0/lab <ENTER>
 ```
-- Replace **??** with your subject code (`00 or 44`)
-- Replace **X** with Workshop number: [`1 to 10`]
-- Replace **sss** with the section: [`naa, nbb, nra, zaa, etc...`]
 
 ### Reflection Submission
 ```bash
-~profname.proflastname/submit 2??/wX/ref_sss <ENTER>
+~profname.proflastname/submit 345/w0/ref <ENTER>
 ```
-- Replace **??** with your subject code (`00 or 44`)
-- Replace **X** with Workshop number: [`1 to 10`]
-- Replace **sss** with the section: [`naa, nbb, nra, zaa, etc...`]
-
 
 ### submission options
 
