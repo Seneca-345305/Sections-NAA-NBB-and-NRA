@@ -1,4 +1,4 @@
-# OOP345 NDD and NEE Notes
+# OOP345 NAA, NBB and NRA Notes
 ## [Workshop Zero](WS00/readme.md)
 As a student in my C++ course, you must familiarize yourself with GitHub so you can share your daily work with me for advice, help, collaboration, and monitoring of your progress.
 
