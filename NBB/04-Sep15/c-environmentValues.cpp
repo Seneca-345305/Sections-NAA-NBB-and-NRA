@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+
+// OSVariable=OS_value
+
 int main(int argc, char* argv[], char* env[]) {
    cout << "04Sep15 OOP345NAA" << endl;
    cout << argc << " command argurmets: " << endl;

@@ -1,4 +1,5 @@
 #include <iostream>
+// a C-String: VarName=Value 
 using namespace std;
 int main(int argc, char* argv[], char* env[]) {
    cout << "03-sep16 OOP345 NRA" << endl;

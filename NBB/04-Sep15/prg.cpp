@@ -40,7 +40,7 @@ public:
    Name(const Name& other) {
       set(other.m_first, other.m_last);
    }
-
+   // Move Constructor
    Name(Name&& other)noexcept {
       m_first = other.m_first;
       m_last = other.m_last;
@@ -55,7 +55,7 @@ public:
       }
       return *this;
    }
-
+   // Move Assignment
    Name& operator=(Name&& other) noexcept {
       if (this != &other) {
          m_first = other.m_first;
@@ -93,5 +93,7 @@ int main() {
    printByValue(n1);
    Name n2 = makeName();
    cout << "n2: "; n2.display(); cout << '\n';
+
+   n2 = move(n1);
    return 0;
 }
