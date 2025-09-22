@@ -14,7 +14,7 @@ void hexDump(void* a, int n) {
 int main() {
    int i = 2456;
    double x = 4.56;
-   cout << "Integer: "; hexDump(&i, 4);
-   cout << "Double: ";  hexDump(&x, 8);
+   cout << "Integer: "; hexDump(&i, sizeof(int));
+   cout << "Double: ";  hexDump(&x, sizeof(double));
    return 0;
 }

@@ -40,6 +40,7 @@ public:
    Name(const Name& other) {
       set(other.m_first, other.m_last);
    }
+   // move constructor
    Name(Name&& other) noexcept {
       m_first = other.m_first;
       m_last = other.m_last;
@@ -57,7 +58,7 @@ public:
       return *this;
    }
 
-
+   // Move assignment
    Name& operator=(Name&& other) noexcept {
       if (this != &other) {
          delete[] m_first;

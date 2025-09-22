@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+
+// OSVariable=OSValue
 int main(int argc, char* argv[], char* env[]) {
    cout << "04-Sep15 OOP345NAA" << endl;
    cout << "Command line arguments: " << endl;
