@@ -129,7 +129,16 @@
     <ClCompile Include="prg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="IntArray.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="expressions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01_Expressions.md" />
+    <None Include="02_Precedence_Table.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

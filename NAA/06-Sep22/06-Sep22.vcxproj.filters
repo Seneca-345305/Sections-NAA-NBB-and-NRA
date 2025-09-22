@@ -26,5 +26,24 @@
     <ClInclude Include="IntArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="expressions.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="02_Precedence_Table.md">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="01_Expressions.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -26,7 +26,8 @@ public:
    HideSubContent& setOs(std::ostream& os);
    // recieves the IOAble for manipulation and then 
    // passes the object to the ostream for ouput
-   std::ostream& operator<<(const IOAble& obj);
+   // cout << hideNextSubContent << Book("whatever")
+    std::ostream& operator<<(const IOAble& obj);
 };
 
 

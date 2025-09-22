@@ -2,53 +2,67 @@
 #include "IntArray.h"
 using namespace std;
 namespace seneca {
-   IntArray::IntArray(int size) {
-      if (size <= 0) size = 1;
+   IntArray::IntArray(size_t size) {
+      if (size == 0) size = 1;
       m_data = new int[m_size = size];
    }
    IntArray::IntArray(const IntArray& cp) {
       m_data = new int[m_size = cp.m_size];
-      for (int i = 0; i < m_size; i++) {
+      for (size_t i = 0; i < m_size; i++) {
          m_data[i] = cp.m_data[i];
       }
+   }
+   IntArray::IntArray(IntArray&& mv) noexcept{
+      m_data = mv.m_data;
+      m_size = mv.m_size;
+      mv.m_data = new int[1];
+      mv.m_size = 1;
    }
    IntArray& IntArray::operator=(const IntArray& cp) {
       if (this != &cp) {
          delete[] m_data;
          m_data = new int[m_size = cp.m_size];
-         for (int i = 0; i < m_size; i++) {
+         for (size_t i = 0; i < m_size; i++) {
             m_data[i] = cp.m_data[i];
          }
+      }
+      return *this;
+   }
+   IntArray& IntArray::operator=(IntArray&& mv) noexcept {
+      if (this != &mv) {
+         delete[] m_data;
+         m_data = mv.m_data;
+         m_size = mv.m_size;
+         mv.m_data = new int[1];
+         mv.m_size = 1;
       }
       return *this;
    }
    IntArray::~IntArray() {
       delete[] m_data;
    }
-   int IntArray::size() const {
+   size_t IntArray::size() const {
       return m_size;
    }
-   int& IntArray::operator[](int index) {
-      if (index < 0) index = 0;
+   int& IntArray::operator[](size_t index) {
       if (index >= m_size) {
          resize(index + 1);
       }
       return m_data[index];
    }
-   const int& IntArray::operator[](int index)const {
-      if (index < 0) index = 0;
+   const int& IntArray::operator[](size_t index)const {
       return m_data[index % m_size];
    }
 
    std::ostream& IntArray::display(std::ostream& ostr)const {
       ostr << operator[](0);
-      for (int i = 1; i < size(); i++) {
+      for (size_t i = 1; i < size(); i++) {
          ostr << "," << (*this)[i];
       }
       return ostr;
    }
 
-   void IntArray::resize(int newsize) {
+   void IntArray::resize(size_t newsize) {
       int* temp = new int[newsize];
       for (int i = 0; i < m_size && i < newsize; i++) {
          temp[i] = m_data[i];

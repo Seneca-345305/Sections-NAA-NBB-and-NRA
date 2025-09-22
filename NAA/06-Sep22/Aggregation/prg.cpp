@@ -2,6 +2,13 @@
 using namespace std;
 #include "Library.h"
 #include "Book.h"
+
+/// <summary>
+/// prints a null terminated arrary of pointers
+/// </summary>
+/// <typeparam name="T">is pointer to an array of an class</typeparam>
+/// <param name="p"></param>
+/// <param name="prompt"></param>
 template <typename T>
 void show(T p, const char* prompt) {
    cout << prompt << endl;
