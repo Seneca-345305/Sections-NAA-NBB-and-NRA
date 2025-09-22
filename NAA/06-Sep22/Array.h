@@ -64,7 +64,7 @@ namespace seneca {
       m_size = mv.m_size;
       m_data = mv.m_data;
       mv.m_size = 0;
-      mv.m_data = nullptr;
+      mv.m_data = new type[1];
    }
 
 
@@ -88,7 +88,7 @@ namespace seneca {
          m_size = mv.m_size;
          m_data = mv.m_data;
          mv.m_size = 0;
-         mv.m_data = nullptr;
+         mv.m_data = new type[1];
       }
       return *this;
    }
