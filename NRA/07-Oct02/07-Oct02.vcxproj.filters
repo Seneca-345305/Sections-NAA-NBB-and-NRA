@@ -19,9 +19,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Hanoi.pptx">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

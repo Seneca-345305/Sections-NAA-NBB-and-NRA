@@ -15,13 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Int.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="prg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Hanoi.pptx">
-      <Filter>Resource Files</Filter>
-    </None>
+    <ClInclude Include="Int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,23 +1,19 @@
 #include <iostream>
 using namespace std;
-
-
+bool isAdult(int num) {
+   return num >= 18 && num <= 65;
+}
+bool validNoOfStudents(int num) {
+   return num >= 10 && num <= 35;
+}
 int getInt(bool (*isValid)(int));
 int main() {
    cout << "07-Sep29 OOP345 NBB" << endl;
    cout << "Enter your age: ";
-   int age = getInt(
-      [](int num) {
-         return num >= 18 && num <= 65; 
-      }
-   );
+   int age = getInt(isAdult);
    cout << "age: " << age << endl;
    cout << "Enter the number of students: ";
-   int nos = getInt(
-      [](int num) {
-         return num >= 10 && num <= 35;
-      }
-   );
+   int nos = getInt(validNoOfStudents);
    cout << "No of students in class: " << nos << endl;
    return 0;
 }

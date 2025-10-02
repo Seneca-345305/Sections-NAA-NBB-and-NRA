@@ -1,9 +1,6 @@
 #include <iostream>
 using namespace std;
 
-bool validNoOfStudents(int num) {
-   return num >= 10 && num <= 35;
-}
 int getInt(bool (*isValid)(int));
 
 int main() {
@@ -12,9 +9,11 @@ int main() {
    int age = getInt([](int num) {return num >= 18 && num <= 65; });
    cout << "age: " << age << endl;
    cout << "Enter number of students: ";
-   int stno = getInt([](int num) {
-         return num >= 10 && num <= 35;
-      });
+   int stno = getInt(
+                       [](int num)->bool{
+                            return num >= 10 && num <= 35;
+                       }
+                    );
    cout << "Number of students in class: " << stno << endl;
    return 0;
 }
