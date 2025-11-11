@@ -126,6 +126,10 @@
   <ItemGroup>
     <ClCompile Include="prg.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShPtr.h" />
+    <ClInclude Include="UnPtr.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

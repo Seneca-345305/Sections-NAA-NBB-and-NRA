@@ -1,10 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <cstring>
 #include <iomanip>
 #include <memory>
-using namespace std;
 
+using namespace std;
 class Employee {
    double m_salary;
    int m_empno;
@@ -27,17 +26,15 @@ public:
 ostream& operator<<(ostream& os, const Employee& E) {
    return E.print(os);
 }
-void test1() {
-   shared_ptr<Employee> p(new Employee(12345.56, 12345, "Fred Soley"));
-   shared_ptr<Employee> p2(new Employee(12345.56, 12345, "Fred Sol"));
-   shared_ptr<Employee> q, r(new Employee(12345.56, 32345, "Jack Soley"));
-   q = p;
-   r->print(cout) << endl;
-   cout << *p << endl;
-   cout << *q << endl;
-}
-
 int main() {
-   test1();
+   unique_ptr<Employee> p(new Employee(123456.45, 12345, "Fred Soley"));
+   unique_ptr<Employee> r(new Employee(123456.45, 12335, "Jack Soley"));
+   unique_ptr<Employee> q = move(p);
+   q = move(r);
+
+   cout << *q << endl;
+   cout << q->salary() << endl;
+
+
    return 0;
 }

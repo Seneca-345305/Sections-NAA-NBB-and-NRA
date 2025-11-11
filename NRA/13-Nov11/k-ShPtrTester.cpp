@@ -2,9 +2,9 @@
 #include <iostream>
 #include <cstring>
 #include <iomanip>
-#include <memory>
+#include "ShPtr.h"
 using namespace std;
-
+using namespace seneca;
 class Employee {
    double m_salary;
    int m_empno;
@@ -28,9 +28,9 @@ ostream& operator<<(ostream& os, const Employee& E) {
    return E.print(os);
 }
 void test1() {
-   shared_ptr<Employee> p(new Employee(12345.56, 12345, "Fred Soley"));
-   shared_ptr<Employee> p2(new Employee(12345.56, 12345, "Fred Sol"));
-   shared_ptr<Employee> q, r(new Employee(12345.56, 32345, "Jack Soley"));
+   ShPtr<Employee> p(new Employee(12345.56, 12345, "Fred Soley"));
+   ShPtr<Employee> p2(new Employee(12345.56, 12345, "Fred Sol"));
+   ShPtr<Employee> q, r(new Employee(12345.56, 32345, "Jack Soley"));
    q = p;
    r->print(cout) << endl;
    cout << *p << endl;
