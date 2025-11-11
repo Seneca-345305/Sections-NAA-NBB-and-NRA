@@ -15,15 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UnPtr.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShPtr.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="UnPtrTester.cpp">
+    <ClCompile Include="prg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,38 +1,74 @@
 #ifndef SENECA_UNPTR_H
-#undef SENECA_UNPTR_H
+#define SENECA_UNPTR_H
+#include <cstddef>  // for nullptr_t
+
 namespace seneca {
-   template<typename Type>
+
+   template <typename Type>
    class UnPtr {
       Type* m_ptr{};
-   public:
-      UnPtr(Type* ptr = nullptr) :m_ptr{ ptr } {};
-      UnPtr(const UnPtr<Type>&) = delete;
-      UnPtr& operator=(const UnPtr<Type>&) = delete;
-      UnPtr(UnPtr<Type>&& up) noexcept {
-         m_ptr = up.m_ptr;
-         up.m_ptr = nullptr;
+
+      // Delete the owned object
+      void cleanup( ) {
+         delete m_ptr;
+         m_ptr = nullptr;
       }
-      UnPtr& operator=(UnPtr<Type>&& up) noexcept {
-         if (this != &up) {
-            delete m_ptr;
-            m_ptr = up.m_ptr;
-            up.m_ptr = nullptr;
+
+   public:
+      // Construct from raw pointer (takes ownership)
+      explicit UnPtr( Type* ptr = nullptr ) : m_ptr( ptr ) { }
+
+      // No copying — exclusive ownership!
+      UnPtr( const UnPtr& ) = delete;
+      UnPtr& operator=( const UnPtr& ) = delete;
+
+      // Move constructor: steal ownership
+      UnPtr( UnPtr&& other ) noexcept
+         : m_ptr( other.m_ptr ) {
+         other.m_ptr = nullptr;
+      }
+
+      // Move assignment: delete old, steal new
+      UnPtr& operator=( UnPtr&& other ) noexcept {
+         if ( this != &other ) {
+            cleanup( );               // delete current
+            m_ptr = other.m_ptr;     // steal
+            other.m_ptr = nullptr;   // null source
          }
          return *this;
       }
-      Type& operator*() {
-         return *m_ptr;
-      }
-      Type* operator->() {
-         return m_ptr;
-      }
-      const void* get()const {
-         return m_ptr;
+
+      // Access
+      Type& operator*( ) { return *m_ptr; }
+      const Type& operator*( ) const { return *m_ptr; }
+
+      Type* operator->( ) { return m_ptr; }
+      const Type* operator->( ) const { return m_ptr; }
+
+      Type* get( ) { return m_ptr; }
+      const Type* get( ) const { return m_ptr; }
+
+      // Safe null check: if (up)
+      explicit operator bool( ) const {
+         return m_ptr != nullptr;
       }
 
-      virtual ~UnPtr() {
-         delete m_ptr;
+      // Compare with nullptr
+      bool operator==( std::nullptr_t ) const { return m_ptr == nullptr; }
+      bool operator!=( std::nullptr_t ) const { return m_ptr != nullptr; }
+
+      // Optional: reset to new pointer
+      void reset( Type* ptr = nullptr ) {
+         cleanup( );
+         m_ptr = ptr;
+      }
+
+      // Destructor: automatically free
+      ~UnPtr( ) {
+         cleanup( );
       }
    };
-}
-#endif
+
+}  // namespace seneca
+
+#endif // SENECA_UNPTR_H
