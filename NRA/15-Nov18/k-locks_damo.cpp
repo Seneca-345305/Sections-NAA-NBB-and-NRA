@@ -118,13 +118,30 @@ void demo_scoped_lock() {
 shared_mutex sm;
 int shared_value = 0;
 mutex io_mtx;
+
+#define Mutexed_io(mtx, output_expr)\
+    do{\
+       std::lock_guard<std::mutex>(mtx);\
+       output_expr;\
+    }while(false)
+
 void reader(int id) {
    for (int i = 0; i < 3; ++i) {
       shared_lock<shared_mutex> lock(sm);  // shared (reader) lock
-      {
-         std::lock_guard<std::mutex> iolock(io_mtx);// to prevent mixed messages
-         cout << "[reader " << id << "] sees value = " << shared_value << "\n";
-      }
+      
+      Mutexed_io(io_mtx, 
+         cout << "[reader " << id << "] sees value = " << shared_value << "\n");
+  /*
+    do{
+       std::lock_guard<std::mutex>(io_mutex);
+       cout << "[reader " << id << "] sees value = " << shared_value << "\n";
+    }while(false);
+  
+  
+  
+  */
+
+
       this_thread::sleep_for(chrono::milliseconds(500));
    }
 }
@@ -133,11 +150,10 @@ void writer(int id) {
    for (int i = 0; i < 3; ++i) {
       unique_lock<shared_mutex> lock(sm);  // exclusive (writer) lock
       ++shared_value;
-      {
-         std::lock_guard<std::mutex> iolock(io_mtx);// to prevent mixed messages
+      Mutexed_io(io_mtx,
          cout << "   [writer " << id << "] increments value to "
-            << shared_value << "\n";
-      }
+         << shared_value << "\n");
+      
       this_thread::sleep_for(chrono::milliseconds(800));
    }
 }

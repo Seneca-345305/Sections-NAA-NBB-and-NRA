@@ -7,11 +7,11 @@ int main() {
    int tx, ty;
    atomic<char> whoGoes = 'n';
    auto Seconds = clk::now() + chrono::seconds(1);
-   thread tX = thread([&]() {
+   thread tX([&]() {
       while (whoGoes != 'x'); 
       for (tx = 0; clk::now() < Seconds; cout << '^', tx++); 
       });
-   thread tY = thread([&]() {
+   thread tY([&]() {
       while (whoGoes != 'y'); 
       for (ty = 0; clk::now() < Seconds; cout << '_', ty++); 
       });

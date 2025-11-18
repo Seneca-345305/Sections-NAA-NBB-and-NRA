@@ -9,30 +9,30 @@ using clk = chrono::steady_clock;
 int main() {
    int tx{}, ty{};
    auto Seconds = clk::now() + chrono::seconds(1);
-   mutex key;
+   mutex theLock;
 
-   key.lock();  // lock before starting threads
+   theLock.lock();  // lock before starting threads
 
    thread tX([&]() {
-      key.lock();  // wait for GO and for tY
+      theLock.lock();  // wait for GO and for tY
       for (tx = 0; clk::now() < Seconds; ++tx) {
          cout << '^';
       }
       Seconds = clk::now() + chrono::seconds(1); // reset for tY
-      key.unlock();
+      theLock.unlock();
       });
 
    thread tY([&]() {
-      key.lock();  // wait for GO and for tX
+      theLock.lock();  // wait for GO and for tX
       for (ty = 0; clk::now() < Seconds; ++ty) {
          cout << '_';
       }
       Seconds = clk::now() + chrono::seconds(1); // not really needed
-      key.unlock();
+      theLock.unlock();
       });
 
    cout << "GO!" << endl;
-   key.unlock();  // let exactly one of them in
+   theLock.unlock();  // let exactly one of them in
 
    tX.join();
    tY.join();

@@ -18,7 +18,7 @@ ull sum_range(ull beg, ull end) {
 
 int main() {
    ull beg = 0;
-   ull end = 2'312'312'311ULL;   // large range
+   ull end = 22'312'312'311ULL;   // large range
 
    // ---------------- Single-threaded sum ----------------
    auto st = clk::now();
@@ -42,7 +42,7 @@ int main() {
    cout << "Using " << numThreads << " async tasks.\n";
 
    vector<future<ull>> futures;
-   futures.reserve(numThreads);
+
 
    ull totalCount = end - beg + 1;
    ull chunkSize = totalCount / numThreads;
