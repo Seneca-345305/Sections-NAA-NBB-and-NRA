@@ -9,11 +9,10 @@ void foo(int& num, const char* chars) {
    }
    num *= 10;
 }
-
 int main() {
    int tx{}, ty{}, tm{};
-   thread tX = thread(foo, ref(tx), "^^^^^^");
-   thread tY = thread(foo, ref(ty), "------------");
+   thread tX(foo, ref(tx), "^^^^^^");
+   thread tY(foo, ref(ty), "------------");
    foo(tm, "________________________");
    tX.join();
    tY.join();
